@@ -2,101 +2,52 @@ ESERCIZIO DB-HOTEL QUERIES
 
 - Selezionare tutte le stanze del primo piano
 
-Full texts	id	room_number	floor	beds	created_at	updated_at
-	Edit Edit	Copy Copy	Delete Delete	1 	100 	1 	2 	2018-05-28 13:33:11 	2018-05-28 13:33:11
-	Edit Edit	Copy Copy	Delete Delete	2 	101 	1 	3 	2018-05-28 13:33:11 	2018-05-28 13:33:11
-	Edit Edit	Copy Copy	Delete Delete	3 	102 	1 	3 	2018-05-28 13:33:11 	2018-05-28 13:33:11
-	Edit Edit	Copy Copy	Delete Delete	4 	103 	1 	1 	2018-05-28 13:33:11 	2018-05-28 13:33:11
-	Edit Edit	Copy Copy	Delete Delete	5 	104 	1 	2 	2018-05-28 13:33:11 	2018-05-28 13:33:11
-	Edit Edit	Copy Copy	Delete Delete	6 	105 	1 	2 	2018-05-28 13:33:11 	2018-05-28 13:33:11
+SELECT *
+FROM `stanze`
+WHERE `stanze`.`floor` = '1';
 
 
 
 
 - Seleziona tutte le prenotazioni precedenti a maggio 2018
 
-Full texts	id	stanza_id	configurazione_id	created_at	updated_at
-	Edit Edit	Copy Copy	Delete Delete	2 	10 	1 	2018-04-13 22:36:11 	2018-04-13 22:36:11
-	Edit Edit	Copy Copy	Delete Delete	3 	6 	2 	2018-04-27 03:58:11 	2018-04-27 03:58:11
-	Edit Edit	Copy Copy	Delete Delete	5 	10 	1 	2018-04-16 07:33:11 	2018-04-16 07:33:11
-	Edit Edit	Copy Copy	Delete Delete	7 	8 	2 	2018-04-22 02:36:11 	2018-04-22 02:36:11
-	Edit Edit	Copy Copy	Delete Delete	8 	9 	3 	2018-04-10 11:16:11 	2018-04-10 11:16:11
-	Edit Edit	Copy Copy	Delete Delete	9 	15 	1 	2018-04-13 22:53:11 	2018-04-13 22:53:11
-	Edit Edit	Copy Copy	Delete Delete	12 	10 	1 	2018-04-29 21:56:11 	2018-04-29 21:56:11
-	Edit Edit	Copy Copy	Delete Delete	13 	11 	4 	2018-04-21 03:04:11 	2018-04-21 03:04:11
-	Edit Edit	Copy Copy	Delete Delete	18 	8 	2 	2018-04-25 02:51:11 	2018-04-25 02:51:11
-	Edit Edit	Copy Copy	Delete Delete	22 	15 	1 	2018-04-23 06:22:11 	2018-04-23 06:22:11
-	Edit Edit	Copy Copy	Delete Delete	23 	14 	2 	2018-04-21 11:34:11 	2018-04-21 11:34:11
-	Edit Edit	Copy Copy	Delete Delete	24 	4 	1 	2018-04-27 21:56:11 	2018-04-27 21:56:11
-	Edit Edit	Copy Copy	Delete Delete	25 	10 	1 	2018-04-18 10:40:11 	2018-04-18 10:40:11
-	Edit Edit	Copy Copy	Delete Delete	29 	6 	2 	2018-04-12 12:20:11 	2018-04-12 12:20:11
-	Edit Edit	Copy Copy	Delete Delete	30 	5 	3 	2018-04-16 11:21:11 	2018-04-16 11:21:11
+SELECT *
+FROM `prenotazioni`
+WHERE YEAR(`prenotazioni`.`created_at`) <= '2018'
+AND MONTH(`prenotazioni`.`created_at`) < '05'
 
 
 
 - Seleziona tutti gli ospiti che hanno più di 20 anni (al momento dell’esecuzione della query)
 
-Full texts	id	name	lastname	date_of_birth	document_type	document_number	created_at	updated_at
-	Edit Edit	Copy Copy	Delete Delete	32 	Madie 	Sanford 	1964-04-02 17:51:08 	CI 	+1-543-639-8712 	2018-05-28 13:40:27 	2018-05-28 13:40:27
-	Edit Edit	Copy Copy	Delete Delete	33 	Orion 	Hilpert 	1975-06-30 18:04:07 	Driver License 	424.999.8375 x49210 	2018-05-28 13:40:27 	2018-05-28 13:40:27
-	Edit Edit	Copy Copy	Delete Delete	34 	Lysanne 	Buckridge 	1960-01-25 05:59:53 	CI 	886.221.5466 x374 	2018-05-28 13:40:27 	2018-05-28 13:40:27
-	Edit Edit	Copy Copy	Delete Delete	35 	Jessie 	Kozey 	1982-06-05 06:00:13 	CI 	468.469.5883 	2018-05-28 13:40:27 	2018-05-28 13:40:27
-	Edit Edit	Copy Copy	Delete Delete	36 	Shemar 	Keeling 	1957-06-14 11:43:50 	CI 	721-324-9086 x042 	2018-05-28 13:40:27 	2018-05-28 13:40:27
-	Edit Edit	Copy Copy	Delete Delete	37 	Edwardo 	Pacocha 	1959-03-29 01:01:36 	CI 	1-743-362-6164 	2018-05-28 13:40:27 	2018-05-28 13:40:27
-	Edit Edit	Copy Copy	Delete Delete	38 	Delilah 	Renner 	1922-11-05 18:13:56 	Driver License 	841.324.4824 x198 	2018-05-28 13:40:27 	2018-05-28 13:40:27
-	Edit Edit	Copy Copy	Delete Delete	39 	Jacquelyn 	Ankunding 	1992-11-19 06:15:10 	CI 	1-732-298-9263 	2018-05-28 13:40:27 	2018-05-28 13:40:27
-	Edit Edit	Copy Copy	Delete Delete	40 	Willie 	Borer 	1926-12-17 17:48:37 	CI 	247.970.3935 x1106 	2018-05-28 13:40:27 	2018-05-28 13:40:27
-	Edit Edit	Copy Copy	Delete Delete	43 	Helene 	Hansen 	2000-02-24 12:21:08 	Driver License 	+1-964-705-7555 	2018-05-28 13:40:27 	2018-05-28 13:40:27
-	Edit Edit	Copy Copy	Delete Delete	44 	Charley 	Abernathy 	1930-04-24 00:12:40 	CI 	985.370.0304 	2018-05-28 13:40:27 	2018-05-28 13:40:27
-	Edit Edit	Copy Copy	Delete Delete	45 	Dion 	Leannon 	1993-09-22 15:41:21 	Driver License 	1-326-694-2607 	2018-05-28 13:40:27 	2018-05-28 13:40:27
-	Edit Edit	Copy Copy	Delete Delete	46 	Zelda 	Johns 	1953-04-03 20:58:01 	Driver License 	285.344.1948 	2018-05-28 13:40:27 	2018-05-28 13:40:27
-	Edit Edit	Copy Copy	Delete Delete	47 	Hadley 	Collins 	1947-06-04 11:31:03 	Driver License 	+1-514-312-2554 	2018-05-28 13:40:27 	2018-05-28 13:40:27
-	Edit Edit	Copy Copy	Delete Delete	49 	Deron 	Hand 	1953-08-06 18:27:40 	Driver License 	+14688925868 	2018-05-28 13:40:27 	2018-05-28 13:40:27
-	Edit Edit	Copy Copy	Delete Delete	51 	Adriana 	Abernathy 	1952-06-01 03:28:30 	Driver License 	953.949.4537 x603 	2018-05-28 13:40:27 	2018-05-28 13:40:27
-	Edit Edit	Copy Copy	Delete Delete	52 	Tyrel 	Murphy 	1977-03-02 10:51:34 	CI 	1-620-470-6907 	2018-05-28 13:40:27 	2018-05-28 13:40:27
-	Edit Edit	Copy Copy	Delete Delete	53 	Dandre 	Kautzer 	1988-05-22 08:37:49 	Driver License 	1-257-565-5268 x0572 	2018-05-28 13:40:27 	2018-05-28 13:40:27
-	Edit Edit	Copy Copy	Delete Delete	54 	Arlo 	Keeling 	1924-03-09 05:05:51 	Driver License 	480-402-1713 	2018-05-28 13:40:27 	2018-05-28 13:40:27
-	Edit Edit	Copy Copy	Delete Delete	56 	Gillian 	Reichel 	2000-09-01 03:03:09 	CI 	+1-751-368-6085 	2018-05-28 13:40:27 	2018-05-28 13:40:27
-	Edit Edit	Copy Copy	Delete Delete	57 	Briana 	Cartwright 	1926-01-21 14:47:47 	CI 	540.302.1002 x294 	2018-05-28 13:40:27 	2018-05-28 13:40:27
-	Edit Edit	Copy Copy	Delete Delete	58 	Shirley 	Brakus 	1951-08-19 19:37:29 	Driver License 	1-471-981-2812 	2018-05-28 13:40:27 	2018-05-28 13:40:27
-	Edit Edit	Copy Copy	Delete Delete	59 	Lamar 	Koch 	1983-08-29 16:27:17 	CI 	(492) 531-7248 x513 	2018-05-28 13:40:27 	2018-05-28 13:40:27
-	Edit Edit	Copy Copy	Delete Delete	60 	Lafayette 	Brakus 	1955-09-02 02:12:26 	CI 	351.512.4630 x454 	2018-05-28 13:40:27 	2018-05-28 13:40:27
+SELECT *
+FROM `ospiti`
+WHERE `ospiti`.`date_of_birth` < NOW() - INTERVAL 20 YEAR;
 
 
 
 - Seleziona tutti gli ospiti il cui nome inizia con la E
 
-Full texts	id	name	lastname	date_of_birth	document_type	document_number	created_at	updated_at
-	Edit Edit	Copy Copy	Delete Delete	31 	Elizabeth 	Romaguera 	2005-03-12 10:37:05 	CI 	838-743-2106 x4269 	2018-05-28 13:40:27 	2018-05-28 13:40:27
-	Edit Edit	Copy Copy	Delete Delete	37 	Edwardo 	Pacocha 	1959-03-29 01:01:36 	CI 	1-743-362-6164 	2018-05-28 13:40:27 	2018-05-28 13:40:27
-	Edit Edit	Copy Copy	Delete Delete	48 	Emilie 	Grant 	2010-12-18 14:22:44 	Driver License 	719-908-6475 	2018-05-28 13:40:27 	2018-05-28 13:40:27
-
-
-
+SELECT *
+FROM `ospiti`
+WHERE `ospiti`.`name` LIKE'E%';
 
 
 
 - Calcola il totale degli ordini accepted
 
 
-Edit Edit	Copy Copy	Delete Delete	3 	accepted 	869.00 	3 	10 	2018-05-28 13:53:45 	2018-05-28 13:53:45
-	Edit Edit	Copy Copy	Delete Delete	5 	accepted 	117.00 	5 	16 	2018-05-28 13:53:45 	2018-05-28 13:53:45
-	Edit Edit	Copy Copy	Delete Delete	6 	accepted 	59.00 	6 	4 	2018-05-28 13:53:45 	2018-05-28 13:53:45
-	Edit Edit	Copy Copy	Delete Delete	11 	accepted 	67.00 	11 	5 	2018-05-28 13:53:45 	2018-05-28 13:53:45
-	Edit Edit	Copy Copy	Delete Delete	13 	accepted 	434.00 	13 	4 	2018-05-28 13:53:45 	2018-05-28 13:53:45
-	Edit Edit	Copy Copy	Delete Delete	14 	accepted 	562.00 	14 	30 	2018-05-28 13:53:45 	2018-05-28 13:53:45
-	Edit Edit	Copy Copy	Delete Delete	17 	accepted 	152.00 	17 	25 	2018-05-28 13:53:45 	2018-05-28 13:53:45
-	Edit Edit	Copy Copy	Delete Delete	19 	accepted 	822.00 	19 	7 	2018-05-28 13:53:45 	2018-05-28 13:53:45
-	Edit Edit	Copy Copy	Delete Delete	21 	accepted 	416.00 	21 	16 	2018-05-28 13:53:45 	2018-05-28 13:53:45
-	Edit Edit	Copy Copy	Delete Delete	22 	accepted 	666.00 	22 	28 	2018-05-28 13:53:45 	2018-05-28 13:53:45
-
+SELECT SUM(`pagamenti`.`id`)
+FROM `pagamenti`
+WHERE `pagamenti`.`status` = 'accepted';
 
 
 
 - Qual è il prezzo massimo pagato?
 
-MAX(price) 	
-993.00
+SELECT MAX(`pagamenti`.`price`)
+FROM `pagamenti`
+
 
 
 
@@ -104,23 +55,24 @@ MAX(price)
 - Seleziona gli ospiti riconosciuti con patente e nati nel 1975
 
 
-33 	Orion 	Hilpert 	1975-06-30 18:04:07 	Driver License 	424.999.8375 x49210 	2018-05-28 13:40:27 	2018-05-28 13:40:27
+SELECT *
+FROM `ospiti`
+WHERE `ospiti`.`document_type` = 'driver license'
+AND YEAR(`ospiti`.`date_of_birth`) = 1975;
 
 
 
 
 - Quanti posti letto ha l’hotel in totale?
 
-tot beds 	
-33
+SELECT SUM(`stanze`.`beds`)
+FROM `stanze`
 
 
 - Somma i prezzi dei pagamenti raggruppandoli per status
 
-
-          €.     status
-       4164.00 	accepted
-      8233.00 	pending
-       2136.00 	rejected
+SELECT SUM(`pagamenti`.`price`)
+FROM `pagamenti`
+GROUP BY (`pagamenti`.`status`)
 
 

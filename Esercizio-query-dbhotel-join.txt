@@ -3,251 +3,78 @@ ESERCIZIO DB-HOTEL QUERIES PARTE 2: JOIN
 - Come si chiamano gli ospiti che hanno fatto più di due prenotazioni?
 
 
-name.     numero_prenotazioni
-Tristian  3
-Zelda.    3
+SELECT COUNT(`prenotazioni_has_ospiti`.`ospite_id`) AS `total`, `ospiti`.`name`
+FROM `prenotazioni_has_ospiti`
+INNER JOIN `ospiti`
+ON `ospiti`.`id` = `prenotazioni_has_ospiti`.`ospite_id`
+GROUP BY`prenotazioni_has_ospiti`.`ospite_id`;
+
+
+
+
 
 
 - Stampare tutti gli ospiti per ogni prenotazione
 
-ID_OSPITE name lastname PRENOTAZIONE_ID
-32
-Madie
-Sanford
-1
-56
-Gillian
-Reichel
-2
-58
-Shirley
-Brakus
-3
-46
-Zelda
-Johns
-4
-41
-Tristian
-Koss
-5
-46
-Zelda
-Johns
-6
-40
-Willie
-Borer
-7
-43
-Helene
-Hansen
-8
-58
-Shirley
-Brakus
-9
-41
-Tristian
-Koss
-10
-37
-Edwardo
-Pacocha
-11
-33
-Orion
-Hilpert
-12
-46
-Zelda
-Johns
-13
-41
-Tristian
-Koss
-14
-51
-Adriana
-Abernathy
-15
-50
-Laurence
-Green
-16
-38
-Delilah
-Renner
-17
-54
-Arlo
-Keeling
-18
-31
-Elizabeth
-Romaguera
-19
-36
-Shemar
-Keeling
-20
-55
-Nikita
-Donnelly
-21
-35
-Jessie
-Kozey
-22
-47
-Hadley
-Collins
-23
-49
-Deron
-Hand
-24
-51
-Adriana
-Abernathy
-25
-55
-Nikita
-Donnelly
-26
-47
-Hadley
-Collins
-27
-32
-Madie
-Sanford
-28
-54
-Arlo
-Keeling
-29
-56
-Gillian
-Reichel
-30
+SELECT `ospiti`.`name`
+FROM `prenotazioni_has_ospiti`
+INNER JOIN `ospiti`
+ON `ospiti`.`id` = `prenotazioni_has_ospiti`.`ospite_id`
+INNER JOIN `prenotazioni`
+ON `prenotazioni`.`id` = `prenotazioni_has_ospiti`.`prenotazione_id`
+
+
+
+
+
 
 
 - Stampare Nome, Cognome, Prezzo e Pagante per tutte le prenotazioni fatte a Maggio 2018
 
-name
-lastname
-price
-pagante_id
-id
-created_at
 
-Elizabeth
-Romaguera
-671.00
-6
-4
-2018-05-24 23:58:11
-Lysanne
-Buckridge
-332.00
-25
-10
-2018-05-20 13:16:11
-Deron
-Hand
-67.00
-5
-11
-2018-05-14 01:04:11
-Kamron
-Murphy
-562.00
-30
-14
-2018-05-20 03:43:11
-Elizabeth
-Romaguera
-614.00
-6
-15
-2018-05-08 22:22:11
-Lysanne
-Buckridge
-152.00
-25
-17
-2018-05-09 03:17:11
-Delilah
-Renner
-822.00
-7
-19
-2018-05-25 23:15:11
-Willie
-Borer
-416.00
-16
-21
-2018-05-11 21:57:11
-Gillian
-Reichel
-609.00
-19
-26
-2018-05-24 12:35:11
-Deron
-Hand
-508.00
-5
-27
-2018-05-17 23:26:11
-Orion
-Hilpert
-82.00
-28
-28
-2018-05-13 07:19:11
+
+SELECT `paganti`.`name`,`paganti`.`lastname`,`pagamenti`.`price`
+FROM `pagamenti`
+INNER JOIN `paganti`
+ON `paganti`.`id` = `pagamenti`.`pagante_id`
+WHERE `pagamenti`.`created_at` LIKE '2018-05%';
+
+
+
+
 
 
 - Fai la somma di tutti i prezzi delle prenotazioni per le stanze del primo piano
 
-SUM(pagamenti.price)
-4509.00
+
+SELECT SUM(`pagamenti`.`price`)
+FROM `stanze`
+INNER JOIN `prenotazioni`
+ON `stanze`.`id` = `prenotazioni`.`stanza_id`
+INNER JOIN `pagamenti`
+ON `pagamenti`.`prenotazione_id` = `prenotazioni`.`id`
+WHERE `stanze`.`floor` = '1';
+
 
 
 - Prendi i dati di fatturazione (name, lastname e address) per la prenotazione con id=7
 
-lastname
-address
-name
-Romaguera
-3125 Kenya Path Apt. 401
-Thoraborough, TN 06428
-Elizabeth
+SELECT `paganti`.`name`, `paganti`.`lastname`,`paganti`.`address`
+FROM `prenotazioni`
+INNER JOIN `pagamenti`
+ON `prenotazioni`.`id` = `pagamenti`.`prenotazione_id`
+INNER JOIN `paganti`
+ON `pagamenti`.`pagante_id` = `paganti`.`id`
+WHERE `prenotazioni`.`id` = '7';
 
 
-- Le stanze sono state tutte prenotate almeno una volta? (Visualizzare le stanze non ancora prenotate)
 
-floor
-beds
-created_at
-updated_at
-id
-stanza_id
-configurazione_id
-created_at
-updated_at
-id
-room_number
-1
-3
-2018-05-28 13:33:11
-2018-05-28 13:33:11
-NULL
-NULL
-NULL
-NULL
-NULL
-2
-101
+
+
+- Le stanze  sono state tutte prenotate almeno una volta? (Visualizzare le stanze non ancora prenotate)
+
+SELECT *
+FROM `stanze`
+LEFT JOIN `prenotazioni`
+ON `stanze`.`id` = `prenotazioni`.`stanza_id`
+WHERE `prenotazioni`.`id`IS NULL;
